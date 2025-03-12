@@ -80,30 +80,30 @@ def addsign(img):
     bilateral_filter(img)#對修改後的`img`圖片進行雙邊濾波
     return img
 
-def bigger_picture(img,h,w,c,scale):
-    NH,NW = int(h * scale), int(w * scale)
-    bigimg=resize_image(img,NH,NW,c,scale,scale)
-    bigimg=addsign(bigimg)
-    cv2.imshow("bigger", bigimg)
-    cv2.imwrite("../bigger_picture.png",bigimg)#將圖片儲存到指定位子
+def bigger_picture(img,h,w,c,scale):#原圖、高度、寬度、通道數、放到倍率
+    NH,NW = int(h * scale), int(w * scale)#新的高度和新的寬度
+    bigimg=resize_image(img,NH,NW,c,scale,scale)#丟進通用形態轉變程式裡進行"變大"
+    bigimg=addsign(bigimg)#圖片新增簽名
+    cv2.imshow("bigger", bigimg)#顯示圖片(標題檔、圖片資訊)
+    cv2.imwrite("../bigger_picture.png",bigimg)#將圖片儲存到指定位子(位子、圖片資訊)
 
-def smaller_picture(img,h,w,c,scale):
-    NH,NW = int(h* scale), int(w * scale)
-    smallimg=resize_image(img,NH,NW,c,scale,scale)
-    cv2.imshow("smaller", smallimg)
-    cv2.imwrite("../smaller_picture.png",smallimg)
+def smaller_picture(img,h,w,c,scale):#原圖、高度、寬度、通道數、放到倍率
+    NH,NW = int(h* scale), int(w * scale)#新的高度和新的寬度
+    smallimg=resize_image(img,NH,NW,c,scale,scale)#丟進通用形態轉變程式裡進行"變小"
+    cv2.imshow("smaller", smallimg)#顯示圖片(標題檔、圖片資訊)
+    cv2.imwrite("../smaller_picture.png",smallimg)#將圖片儲存到指定位子(位子、圖片資訊)
 
-def width_picture(img,h,w,c,scale):
-    NH,NW = h, int(w * scale)
-    widthimg=resize_image(img,NH,NW,c,1,scale)
-    cv2.imshow("width", widthimg)
-    cv2.imwrite("../width_picture.png",widthimg)
+def width_picture(img,h,w,c,scale):#原圖、高度、寬度、通道數、放到倍率
+    NW =  int(w * scale)#新的寬度
+    widthimg=resize_image(img,h,NW,c,1,scale)#丟進通用形態轉變程式裡進行"寬度放大"
+    cv2.imshow("width", widthimg)#顯示圖片(標題檔、圖片資訊)
+    cv2.imwrite("../width_picture.png",widthimg)#將圖片儲存到指定位子(位子、圖片資訊)
 
-def height_picture(img,h,w,c,scale):
-    NH,NW = int(h * scale), int(w )
-    heightimg=resize_image(img,NH,NW,c,scale,1)
-    cv2.imshow("height", heightimg)
-    cv2.imwrite("../height_picture.png",heightimg)
+def height_picture(img,h,w,c,scale):#原圖、高度、寬度、通道數、放到倍率
+    NH = int(h * scale)#新的高度
+    heightimg=resize_image(img,NH,w,c,scale,1)#丟進通用形態轉變程式裡進行"長度放大"
+    cv2.imshow("height", heightimg)#顯示圖片(標題檔、圖片資訊)
+    cv2.imwrite("../height_picture.png",heightimg)#將圖片儲存到指定位子(位子、圖片資訊)
 
 # 讀取圖片
 img = cv2.imread('image.jpg')#讀取圖片
